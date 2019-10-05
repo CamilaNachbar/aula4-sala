@@ -1,8 +1,8 @@
 package br.com.aula4.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -10,17 +10,25 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 @Entity
+@SequenceGenerator(name = "USUARIO_SEQ", sequenceName = "USUARIO_SEQ", allocationSize = 1, initialValue = 1)
 @Table(name = "usuario")
-public class Usuario {
+public class Usuario implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
-	private Long idUsuario;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(insertable = false, columnDefinition = "serial")
+	private Integer idUsuario;
 
 	@Column(name = "nome_usuario", nullable = false)
 	@NotNull
@@ -30,15 +38,14 @@ public class Usuario {
 	@Column(name = "data_nascimento")
 	private Date dataNascimento;
 
-	@OneToOne(mappedBy = "usuario", 
-	fetch = FetchType.LAZY, optional = false)
+	@OneToOne(mappedBy = "usuario", fetch = FetchType.LAZY, optional = false)
 	private Professor professor;
 
-	public Long getIdUsuario() {
+	public Integer getIdUsuario() {
 		return idUsuario;
 	}
 
-	public void setIdUsuario(Long idUsuario) {
+	public void setIdUsuario(Integer idUsuario) {
 		this.idUsuario = idUsuario;
 	}
 

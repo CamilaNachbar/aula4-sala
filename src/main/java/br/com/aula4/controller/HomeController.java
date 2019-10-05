@@ -22,9 +22,9 @@ public class HomeController {
 			servico.salvarUsuario(usuario);
 			return new ResponseEntity<>(HttpStatus.CREATED);
 		} catch (Exception e) {
+			System.out.println("" + e);
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 
 		}
-
 	}
 }
