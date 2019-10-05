@@ -24,10 +24,42 @@ public class Professor {
 	private String materia;
 
 	@OneToOne
-    @JoinColumn(name = "professor")
+	@JoinColumn(name = "professor")
 	private Usuario usuario;
 
 	@OneToMany
 	private List<Aluno> alunos;
+
+	public Long getIdProfessor() {
+		return idProfessor;
+	}
+
+	public void setIdProfessor(Long idProfessor) {
+		this.idProfessor = idProfessor;
+	}
+
+	public String getMateria() {
+		return materia;
+	}
+
+	public void setMateria(String materia) {
+		this.materia = materia;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
+	public List<Aluno> getAlunos() {
+		return alunos;
+	}
+
+	public void setAlunos(List<Aluno> alunos) {
+		this.alunos = alunos;
+	}
 
 }
